@@ -21,6 +21,25 @@ app.set('port', port);
 
 var server = http.createServer(app);
 
+var io = require('socket.io')(server);
+
+var players = {};
+
+io.sockets.on('connection', function(socket) {
+  console.log('hi!');
+    socket.on('joined', function(e) {
+        console.log(players);
+        socket.emit('all_players', {players: players});
+        players[this.id] = e;
+        console.log(e);
+        socket.broadcast.emit('joining_player', {id: this.id, ship: e});
+        console.log(players);
+    });
+    socket.on('location', function(e) {
+      players[this.id] = e;
+      socket.broadcast.emit('newLocation', {id: this.id, ship: e})
+    });
+});
 /**
  * Listen on provided port, on all network interfaces.
  */
