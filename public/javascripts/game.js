@@ -14,11 +14,10 @@ var Arena;
     var Game = (function (_super) {
         __extends(Game, _super);
         function Game() {
-            var _this = this;
-            console.log('got here');
-            _this = _super.call(this, 800, 600, Phaser.AUTO, 'content') || this;
+            var _this = _super.call(this, window.innerWidth, window.innerHeight, Phaser.AUTO, 'game') || this;
             _this.state.add('Singleplayer', Arena.Singleplayer, false);
-            _this.state.start('Singleplayer');
+            _this.state.add('Menu', Arena.Menu, false);
+            _this.state.start('Menu');
             return _this;
         }
         return Game;

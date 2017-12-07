@@ -4,10 +4,10 @@ module Arena {
     export class Game extends Phaser.Game {
 
         constructor() {
-            console.log('got here');
-            super(800, 600, Phaser.AUTO, 'content');
+            super(window.innerWidth, window.innerHeight, Phaser.AUTO, 'game');
             this.state.add('Singleplayer', Singleplayer, false);
-            this.state.start('Singleplayer');
+            this.state.add('Menu', Menu, false);
+            this.state.start('Menu');
         }
     }
     window.onload = () => {

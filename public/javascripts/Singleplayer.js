@@ -42,7 +42,11 @@ var Arena;
             this.playerShip.body.damping = 0.1;
             this.game.camera.follow(this.playerShip);
             this.socket = io.connect();
-            this.socket.emit('joined', { x: this.playerShip.x, y: this.playerShip.y, rotation: this.playerShip.rotation });
+            this.socket.emit('joined', {
+                x: this.playerShip.x,
+                y: this.playerShip.y,
+                rotation: this.playerShip.rotation
+            });
             this.socket.on('all_players', this.allShips.bind(this));
             this.socket.on('joining_player', this.addShip.bind(this));
             this.socket.on('newLocation', this.moveShip.bind(this));
@@ -66,8 +70,6 @@ var Arena;
             console.log(e);
             console.log(e.players);
             for (var key in e.players) {
-                console.log('beyblade');
-                console.log(key);
                 this.addShip({ id: key, ship: e.players[key] });
             }
         };
@@ -92,7 +94,11 @@ var Arena;
                 console.log('other left');
                 this.playerShip.body.rotateRight(50);
                 (stopping) ? this.playerShip.body.damping = 0.9 : this.playerShip.body.damping = 0.1;
-                this.socket.emit('location', { x: this.playerShip.x, y: this.playerShip.y, rotation: this.playerShip.rotation });
+                this.socket.emit('location', {
+                    x: this.playerShip.x,
+                    y: this.playerShip.y,
+                    rotation: this.playerShip.rotation
+                });
             }
         };
         return Singleplayer;

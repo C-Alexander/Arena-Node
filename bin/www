@@ -26,7 +26,6 @@ var io = require('socket.io')(server);
 var players = {};
 
 io.sockets.on('connection', function(socket) {
-  console.log('hi!');
     socket.on('joined', function(e) {
         console.log(players);
         socket.emit('all_players', {players: players});
@@ -40,6 +39,7 @@ io.sockets.on('connection', function(socket) {
       socket.broadcast.emit('newLocation', {id: this.id, ship: e})
     });
 });
+
 /**
  * Listen on provided port, on all network interfaces.
  */

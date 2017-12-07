@@ -43,7 +43,11 @@ module Arena {
             this.game.camera.follow(this.playerShip);
 
             this.socket = io.connect();
-            this.socket.emit('joined', {x: this.playerShip.x, y: this.playerShip.y, rotation: this.playerShip.rotation});
+            this.socket.emit('joined', {
+                x: this.playerShip.x,
+                y: this.playerShip.y,
+                rotation: this.playerShip.rotation
+            });
             this.socket.on('all_players', this.allShips.bind(this));
             this.socket.on('joining_player', this.addShip.bind(this));
             this.socket.on('newLocation', this.moveShip.bind(this));
@@ -63,15 +67,14 @@ module Arena {
             this.players[e.id].y = e.ship.y;
             this.players[e.id].rotation = e.ship.rotation;
         }
+
         allShips(e: any) {
             this.players = [];
             console.log('reached');
             console.log(e);
             console.log(e.players);
-            for(let key in e.players) {
-                console.log('beyblade');
-            console.log(key);
-            this.addShip({id: key, ship: e.players[key]})
+            for (let key in e.players) {
+                this.addShip({id: key, ship: e.players[key]})
             }
         }
 
@@ -98,9 +101,14 @@ module Arena {
             if (this.keys.right.isDown || this.arrowKeys.right.isDown) {
                 console.log('other left');
                 this.playerShip.body.rotateRight(50);
-            (stopping) ? this.playerShip.body.damping = 0.9 : this.playerShip.body.damping = 0.1;
+                (stopping) ? this.playerShip.body.damping = 0.9 : this.playerShip.body.damping = 0.1;
 
-            this.socket.emit('location', {x: this.playerShip.x, y: this.playerShip.y, rotation: this.playerShip.rotation})
+                this.socket.emit('location', {
+                    x: this.playerShip.x,
+                    y: this.playerShip.y,
+                    rotation: this.playerShip.rotation
+                })
+            }
         }
     }
 }
