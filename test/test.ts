@@ -1,3 +1,4 @@
+///<reference path="../node_modules/@types/mocha/index.d.ts"/>
 let assert = require('assert');
 describe('Array', function () {
     describe('#indexOf()', function () {
