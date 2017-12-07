@@ -1,3 +1,4 @@
+"use strict";
 var __extends = (this && this.__extends) || (function () {
     var extendStatics = Object.setPrototypeOf ||
         ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
@@ -8,10 +9,11 @@ var __extends = (this && this.__extends) || (function () {
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
     };
 })();
+exports.__esModule = true;
 // import pixi, p2 and phaser ce
-import "pixi";
-import "p2";
-import * as Phaser from "phaser-ce";
+require("pixi");
+require("p2");
+var Phaser = require("phaser-ce");
 /**
  * Main entry game class
  * @export
@@ -32,5 +34,4 @@ var Game = (function (_super) {
     }
     return Game;
 }(Phaser.Game));
-export { Game };
-//# sourceMappingURL=game.js.map
+exports.Game = Game;

@@ -16,7 +16,7 @@ var Arena;
         function Game() {
             var _this = _super.call(this, window.innerWidth, window.innerHeight, Phaser.AUTO, 'game') || this;
             _this.state.add('Singleplayer', Arena.Singleplayer, false);
-            _this.state.add('Menu', Arena.Menu, false);
+            _this.state.add('Menu', Menu, false);
             _this.state.start('Menu');
             return _this;
         }

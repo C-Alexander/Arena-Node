@@ -1,42 +1,43 @@
+"use strict";
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
-import { BrowserModule } from '@angular/platform-browser';
-import { ErrorHandler, NgModule } from '@angular/core';
-import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
-import { SplashScreen } from '@ionic-native/splash-screen';
-import { StatusBar } from '@ionic-native/status-bar';
-import { MyApp } from './app.component';
-import { HomePage } from '../pages/home/home';
+exports.__esModule = true;
+var platform_browser_1 = require("@angular/platform-browser");
+var core_1 = require("@angular/core");
+var ionic_angular_1 = require("ionic-angular");
+var splash_screen_1 = require("@ionic-native/splash-screen");
+var status_bar_1 = require("@ionic-native/status-bar");
+var app_component_1 = require("./app.component");
+var home_1 = require("../pages/home/home");
 var AppModule = (function () {
     function AppModule() {
     }
     AppModule = __decorate([
-        NgModule({
+        core_1.NgModule({
             declarations: [
-                MyApp,
-                HomePage
+                app_component_1.MyApp,
+                home_1.HomePage
             ],
             imports: [
-                BrowserModule,
-                IonicModule.forRoot(MyApp)
+                platform_browser_1.BrowserModule,
+                ionic_angular_1.IonicModule.forRoot(app_component_1.MyApp)
             ],
-            bootstrap: [IonicApp],
+            bootstrap: [ionic_angular_1.IonicApp],
             entryComponents: [
-                MyApp,
-                HomePage
+                app_component_1.MyApp,
+                home_1.HomePage
             ],
             providers: [
-                StatusBar,
-                SplashScreen,
-                { provide: ErrorHandler, useClass: IonicErrorHandler }
+                status_bar_1.StatusBar,
+                splash_screen_1.SplashScreen,
+                { provide: core_1.ErrorHandler, useClass: ionic_angular_1.IonicErrorHandler }
             ]
         })
     ], AppModule);
     return AppModule;
 }());
-export { AppModule };
-//# sourceMappingURL=app.module.js.map
+exports.AppModule = AppModule;

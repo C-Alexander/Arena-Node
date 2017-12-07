@@ -52,7 +52,12 @@
     // "emitDecoratorMetadata": true,         /* Enables experimental support for emitting type metadata for decorators. */
   },
   "files": [
-    "public/javascripts/phaser/typescript/phaser.d.ts"
+    "public/javascripts/phaser/typescript/phaser.d.ts",
+    "app.ts"
+  ],
+  "include": [
+    "routes/",
+    "test/"
   ],
   "exclude": [
     "node_modules",
