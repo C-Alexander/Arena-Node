@@ -3,8 +3,6 @@ node_js:
   - "lts/*"
 before_install:
   - npm install -g typescript
-before_script:
-  - tsc
 cache:
   directories:
     - "node_modules"
