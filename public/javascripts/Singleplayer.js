@@ -50,6 +50,7 @@ var Arena;
             this.socket.on('all_players', this.allShips.bind(this));
             this.socket.on('joining_player', this.addShip.bind(this));
             this.socket.on('newLocation', this.moveShip.bind(this));
+            this.game.plugins.add(controllermanager);
         };
         Singleplayer.prototype.addShip = function (e) {
             console.log(e);
@@ -74,6 +75,9 @@ var Arena;
             }
         };
         Singleplayer.prototype.update = function () {
+            // let cm = new controllermanager(null, null);
+            console.log(this.game.controllers.getControllers());
+            console.log(this.game.controllers.getControllerbyId('Wireless Gamepad (Vendor: 057e Product: 2009)'));
             this.playerShip.body.setZeroRotation();
             var stopping = true;
             if (this.keys.up.isDown || this.arrowKeys.up.isDown) {

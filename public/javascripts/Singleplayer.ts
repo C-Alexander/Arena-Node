@@ -51,6 +51,7 @@ module Arena {
             this.socket.on('all_players', this.allShips.bind(this));
             this.socket.on('joining_player', this.addShip.bind(this));
             this.socket.on('newLocation', this.moveShip.bind(this));
+            this.game.plugins.add(controllermanager);
         }
 
         addShip(e: any) {
@@ -80,6 +81,9 @@ module Arena {
 
 
         update() {
+            // let cm = new controllermanager(null, null);
+            console.log(this.game.controllers.getControllers());
+            console.log(this.game.controllers.getControllerbyId('Wireless Gamepad (Vendor: 057e Product: 2009)'));
             this.playerShip.body.setZeroRotation();
             let stopping = true;
 

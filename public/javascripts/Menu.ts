@@ -10,10 +10,18 @@ module Arena {
         }
 
         create() {
-            const input = document.createElement('input');
-            input.type = "text";
-            input.className = "inputUsername";
             const container = document.getElementById('game');
+            const input = document.createElement('form');
+            input.className = "form-inline inputUsername";
+            const name = document.createElement('input');
+            name.type = "text";
+            name.className = "form-control";
+            input.appendChild(name);
+            const submit = document.createElement('button');
+            submit.type = "submit";
+            submit.className = "btn btn-success";
+            submit.innerHTML = "Play";
+            input.appendChild(submit);
             container.appendChild(input);
         }
 
