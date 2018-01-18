@@ -76,34 +76,36 @@ var Arena;
         };
         Singleplayer.prototype.update = function () {
             // let cm = new controllermanager(null, null);
-            console.log(this.game.controllers.getControllers());
-            console.log(this.game.controllers.getControllerbyId('Wireless Gamepad (Vendor: 057e Product: 2009)'));
+            //    console.log(this.game.controllers.getControllers());
+            //   console.log(this.game.controllers.getControllerbyId('Wireless Gamepad (Vendor: 057e Product: 2009)'));
             this.playerShip.body.setZeroRotation();
             var stopping = true;
-            if (this.keys.up.isDown || this.arrowKeys.up.isDown) {
-                console.log('down');
-                this.playerShip.body.thrust(300);
-                stopping = false;
+            console.log(this.game.controllers);
+            this.game.controllers.setCallbacks({ onAnyUpButton: onAnyUpButton.bind(this),
+                onAnyLeftButton: onAnyLeftButton.bind(this),
+                onAnyDownButton: onAnyDownButton.bind(this),
+                onAnyRightButton: onAnyRightButton.bind(this)
+            });
+            function onAnyRightButton() {
+                this.playerShip.body.rotateRight(50);
             }
-            if (this.keys.down.isDown || this.arrowKeys.down.isDown) {
-                console.log('other down');
+            function onAnyDownButton() {
                 this.playerShip.body.reverse(150);
                 stopping = false;
             }
-            if (this.keys.left.isDown || this.arrowKeys.left.isDown) {
-                console.log('left');
+            function onAnyLeftButton() {
                 this.playerShip.body.rotateLeft(50);
             }
-            if (this.keys.right.isDown || this.arrowKeys.right.isDown) {
-                console.log('other left');
-                this.playerShip.body.rotateRight(50);
-                (stopping) ? this.playerShip.body.damping = 0.9 : this.playerShip.body.damping = 0.1;
-                this.socket.emit('location', {
-                    x: this.playerShip.x,
-                    y: this.playerShip.y,
-                    rotation: this.playerShip.rotation
-                });
+            function onAnyUpButton() {
+                this.playerShip.body.thrust(300);
+                stopping = false;
             }
+            (stopping) ? this.playerShip.body.damping = 0.9 : this.playerShip.body.damping = 0.1;
+            this.socket.emit('location', {
+                x: this.playerShip.x,
+                y: this.playerShip.y,
+                rotation: this.playerShip.rotation
+            });
         };
         return Singleplayer;
     }(Phaser.State));

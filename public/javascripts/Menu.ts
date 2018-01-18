@@ -23,6 +23,11 @@ module Arena {
             submit.innerHTML = "Play";
             input.appendChild(submit);
             container.appendChild(input);
+            input.onsubmit = function(event) {
+                event.preventDefault();
+                input.hidden = true;
+                this.state.start('Singleplayer');
+            }.bind(this);
         }
 
     }
